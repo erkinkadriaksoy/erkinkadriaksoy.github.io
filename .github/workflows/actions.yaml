@@ -1,15 +1,6 @@
----
-layout: default
-title: "Page Title"
-description: "This is a description"
----
-
-name: GitHub Actions
+name: Deploy to GitHub Pages
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
       - main
@@ -17,31 +8,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-          - 18
-          - 20
-          - 22
+
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js v${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: npm
       - run: npm ci
       - run: npm run build
-      # - run: npm test
 
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 22
-        uses: actions/setup-node@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run check
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
