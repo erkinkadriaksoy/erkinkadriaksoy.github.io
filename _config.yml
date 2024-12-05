@@ -1,0 +1,10 @@
+title: "Erkin's Site"
+description: "A site built with Jekyll on GitHub Pages"
+theme: minima # Jekyll'in varsayılan teması
+baseurl: "" # Alt dizin yoksa boş bırakın
+url: "https://erkinkadriaksoy.github.io" # Sitenizin URL'si
+
+exclude:
+  - "src/**/*.astro" # Astro dosyalarını hariç tutar
+  - "node_modules" # Node.js bağımlılıklarını hariç tutar
+  - "dist" # Derleme çıktısını hariç tutar
