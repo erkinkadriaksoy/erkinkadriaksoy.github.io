@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Welcome Page
+title: "Page Title"
+description: "This is a description"
 ---
 
 name: GitHub Actions
